@@ -1,5 +1,5 @@
 import type { Course } from '@shared/types/Course';
-import { CalendarBottomBar } from '@views/components/calendar/CalendarBottomBar/CalendarBottomBar';
+import CalendarBottomBar from '@views/components/calendar/CalendarBottomBar/CalendarBottomBar';
 import CalendarGrid from '@views/components/calendar/CalendarGrid/CalendarGrid';
 import CalendarHeader from '@views/components/calendar/CalendarHeader/CalenderHeader';
 import { CalendarSchedules } from '@views/components/calendar/CalendarSchedules/CalendarSchedules';
@@ -23,9 +23,9 @@ export default function Calendar(): JSX.Element {
     return (
         <div className='flex flex-col'>
             <CalendarHeader
-                totalHours={activeSchedule.hours}
-                scheduleName={activeSchedule.name}
-                totalCourses={activeSchedule?.courses.length}
+            // totalHours={activeSchedule.hours}
+            // scheduleName={activeSchedule.name}
+            // totalCourses={activeSchedule?.courses.length}
             />
             <div className='h-screen w-full flex flex-col md:flex-row'>
                 <div className='min-h-[30%] flex flex-col items-start gap-2.5 p-5 pl-7'>
