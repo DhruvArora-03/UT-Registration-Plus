@@ -240,15 +240,15 @@ interface Color {
 //     },
 // ];
 
-const hexCodeToBaseColorPatchIndex = new Map(
-    colorPatches.map((color: Color, index: number) => [getThemeColorHexByName(color.baseColor), index])
-);
+// const hexCodeToBaseColorPatchIndex = new Map(
+//     colorPatches.map((color: Color, index: number) => [getThemeColorHexByName(color.baseColor), index])
+// );
 
-const hexCodeToShadeColorPatchIndex = new Map(
-    colorPatches.flatMap((color: Color, index: number) =>
-        color.shades.map(shade => [getThemeColorHexByName(shade), index])
-    )
-);
+// const hexCodeToShadeColorPatchIndex = new Map(
+//     colorPatches.flatMap((color: Color, index: number) =>
+//         color.shades.map(shade => [getThemeColorHexByName(shade), index])
+//     )
+// );
 
 /**
  * Props for the CourseCellColorPicker component.
@@ -288,54 +288,54 @@ export default function CourseCellColorPicker({
     const numColumns = 6;
     const numFullRows = 3;
 
-    const handleSelectBaseColorPatch = (baseColorPatchIndex: number) => {
-        const color = baseColorPatchIndex > -1 ? colorPatches[baseColorPatchIndex].baseColor : 'ut-gray';
-        const newHexCode = baseColorPatchIndex > -1 ? getThemeColorHexByName(color).slice(1) : '';
-        setHexCode(newHexCode);
-        setSelectedBaseColorPatch(baseColorPatchIndex);
-        setSelectShadeColorPatch(3);
-    };
+    // const handleSelectBaseColorPatch = (baseColorPatchIndex: number) => {
+    //     const color = baseColorPatchIndex > -1 ? colorPatches[baseColorPatchIndex].baseColor : 'ut-gray';
+    //     const newHexCode = baseColorPatchIndex > -1 ? getThemeColorHexByName(color).slice(1) : '';
+    //     setHexCode(newHexCode);
+    //     setSelectedBaseColorPatch(baseColorPatchIndex);
+    //     setSelectShadeColorPatch(3);
+    // };
 
-    const handleSelectShadeColorPatch = (shadeColorPatchIndex: number) => {
-        const color = colorPatches[selectedBaseColorPatch].shades[shadeColorPatchIndex];
-        const newHexCode = getThemeColorHexByName(color).slice(1);
-        setHexCode(newHexCode);
-        setSelectShadeColorPatch(shadeColorPatchIndex);
-    };
+    // const handleSelectShadeColorPatch = (shadeColorPatchIndex: number) => {
+    //     const color = colorPatches[selectedBaseColorPatch].shades[shadeColorPatchIndex];
+    //     const newHexCode = getThemeColorHexByName(color).slice(1);
+    //     setHexCode(newHexCode);
+    //     setSelectShadeColorPatch(shadeColorPatchIndex);
+    // };
 
-    React.useEffect(() => {
-        const hexCodeWithHash = `#${hexCode}`;
-        if (hexCodeToBaseColorPatchIndex.has(hexCodeWithHash)) {
-            setSelectedBaseColorPatch(hexCodeToBaseColorPatchIndex.get(hexCodeWithHash));
-        }
-        if (hexCodeToShadeColorPatchIndex.has(hexCodeWithHash)) {
-            setSelectedBaseColorPatch(hexCodeToShadeColorPatchIndex.get(hexCodeWithHash));
-        }
-        if (!hexCodeToBaseColorPatchIndex.has(hexCodeWithHash) && !hexCodeToShadeColorPatchIndex.has(hexCodeWithHash)) {
-            setSelectedBaseColorPatch(-1);
-        }
-    }, [hexCode]);
+    // React.useEffect(() => {
+    //     const hexCodeWithHash = `#${hexCode}`;
+    //     if (hexCodeToBaseColorPatchIndex.has(hexCodeWithHash)) {
+    //         setSelectedBaseColorPatch(hexCodeToBaseColorPatchIndex.get(hexCodeWithHash));
+    //     }
+    //     if (hexCodeToShadeColorPatchIndex.has(hexCodeWithHash)) {
+    //         setSelectedBaseColorPatch(hexCodeToShadeColorPatchIndex.get(hexCodeWithHash));
+    //     }
+    //     if (!hexCodeToBaseColorPatchIndex.has(hexCodeWithHash) && !hexCodeToShadeColorPatchIndex.has(hexCodeWithHash)) {
+    //         setSelectedBaseColorPatch(-1);
+    //     }
+    // }, [hexCode]);
 
-    React.useEffect(() => {
-        let finalColor: string | null = null;
-        if (selectedBaseColorPatch === -1 && hexCode.length === 6) {
-            finalColor = `#${hexCode}`;
-        } else if (selectedBaseColorPatch > -1 && selectedShadeColorPatch === -1) {
-            finalColor = getThemeColorHexByName(colorPatches[selectedBaseColorPatch].baseColor);
-        } else if (selectedBaseColorPatch > -1 && selectedShadeColorPatch > -1) {
-            finalColor = getThemeColorHexByName(colorPatches[selectedBaseColorPatch].shades[selectedShadeColorPatch]);
-        } else {
-            finalColor = null;
-        }
-        console.log('finalColor', finalColor);
-        setFinalColor(finalColor);
-    }, [hexCode, selectedBaseColorPatch, selectedShadeColorPatch, setFinalColor]);
+    // React.useEffect(() => {
+    //     let finalColor: string | null = null;
+    //     if (selectedBaseColorPatch === -1 && hexCode.length === 6) {
+    //         finalColor = `#${hexCode}`;
+    //     } else if (selectedBaseColorPatch > -1 && selectedShadeColorPatch === -1) {
+    //         finalColor = getThemeColorHexByName(colorPatches[selectedBaseColorPatch].baseColor);
+    //     } else if (selectedBaseColorPatch > -1 && selectedShadeColorPatch > -1) {
+    //         finalColor = getThemeColorHexByName(colorPatches[selectedBaseColorPatch].shades[selectedShadeColorPatch]);
+    //     } else {
+    //         finalColor = null;
+    //     }
+    //     console.log('finalColor', finalColor);
+    //     setFinalColor(finalColor);
+    // }, [hexCode, selectedBaseColorPatch, selectedShadeColorPatch, setFinalColor]);
 
     return (
         <div className='inline-flex flex-col border border-1 border-ut-offwhite rounded-1 p-[5px]'>
             {Array.from({ length: numFullRows }, (_, rowIndex) => (
                 <div className='flex gap-0 flex-content-between' key={rowIndex}>
-                    {colorPatches.map((color: Color, index) => {
+                    {/* {colorPatches.map((color: Color, index) => {
                         if (index >= rowIndex * numColumns && index < (rowIndex + 1) * numColumns) {
                             return (
                                 <DivWrapper key={color.baseColor}>
@@ -349,11 +349,11 @@ export default function CourseCellColorPicker({
                             );
                         }
                         return null;
-                    })}
+                    })} */}
                 </div>
             ))}
             <div className='flex gap-0 flex-content-between'>
-                <DivWrapper>
+                {/* <DivWrapper>
                     <ColorPatch
                         color={colorPatches[colorPatches.length - 2].baseColor}
                         index={colorPatches.length - 2}
@@ -368,7 +368,7 @@ export default function CourseCellColorPicker({
                         selectedColor={selectedBaseColorPatch}
                         handleSetSelectedColorPatch={handleSelectBaseColorPatch}
                     />
-                </DivWrapper>
+                </DivWrapper> */}
                 <div className='flex items-center justify-center overflow-hidden p-[2px]'>
                     <HexColorEditor hexCode={hexCode} setHexCode={setHexCode} />
                 </div>
@@ -380,12 +380,13 @@ export default function CourseCellColorPicker({
                 </DivWrapper>
             </div>
             <Divider orientation='horizontal' size='100%' className='my-1' />
-            {selectedBaseColorPatch !== -1 && (
+            {/* {selectedBaseColorPatch !== -1 && (
                 <HuePicker
                     shades={colorPatches[selectedBaseColorPatch].shades}
                     selectedColor={selectedShadeColorPatch}
                     setSelectedColor={handleSelectShadeColorPatch}
                 />
-            )}
+            )} */}
         </div>
+    );
 }
